@@ -11,6 +11,7 @@ import com.eliyetyang.piano.model.Major
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 import org.w3c.dom.Text
+import java.lang.StringBuilder
 
 class MainActivity : AppCompatActivity() {
     val mediaPlayer1 = MediaPlayer()
@@ -39,6 +40,12 @@ class MainActivity : AppCompatActivity() {
             stopAll()
             delay = timeET.text.toString().toLongOrNull() ?: 1000L
             setKeySet()
+
+            val buffer = StringBuffer()
+
+            if (keyList.size > 8) {
+                allSoundTV.text = keyList.subList(0, 8).joinTo(buffer, " , ")
+            }
 
             curName = keyList.get(currentKeyIndex)
             currentKeyIndex++
